@@ -64,6 +64,8 @@ jobs:
 
   lint:
     name: Lint
+    permissions:
+      security-events: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
