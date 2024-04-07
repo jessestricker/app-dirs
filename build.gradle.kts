@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.kotlin)
     `java-library`
+
+    alias(libs.plugins.detekt)
+    alias(libs.plugins.kover)
 }
 
 repositories {
@@ -15,4 +18,9 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+detekt {
+    allRules = false
+    basePath = rootProject.projectDir.absolutePath
 }

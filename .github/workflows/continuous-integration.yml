@@ -1,0 +1,88 @@
+name: Continuous Integration
+
+on:
+  push:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.2.1
+        with:
+          java-version: 22
+          distribution: oracle
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3.2.0
+
+      - name: Build
+        run: ./gradlew build --exclude-task=check
+
+  test:
+    name: Test
+    strategy:
+      matrix:
+        runner: [ macos-latest, ubuntu-latest, windows-latest ]
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.2.1
+        with:
+          java-version: 22
+          distribution: oracle
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3.2.0
+
+      - name: Test
+        id: test
+        run: ./gradlew test
+
+      - name: Upload test report
+        uses: actions/upload-artifact@v4.3.1
+        if: ${{ failure() && steps.test.outcome == 'failure' }}
+        with:
+          name: test-report
+          path: ./build/reports/tests/test/
+
+      - name: Generate coverage report
+        run: ./gradlew koverHtmlReport --exclude-task=test
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4.3.1
+        with:
+          name: coverage-report
+          path: ./build/reports/kover/html/
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.2.1
+        with:
+          java-version: 22
+          distribution: oracle
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3.2.0
+
+      - name: Run detekt analysis
+        run: ./gradlew detekt
+
+      - name: Upload detekt report for CodeQL
+        uses: github/codeql-action/upload-sarif@v3.24.10
+        if: ${{ ! cancelled() }}
+        with:
+          sarif_file: ./build/reports/detekt/detekt.sarif
