@@ -1,0 +1,24 @@
+name: Dependency Submission
+
+on:
+  push:
+
+permissions:
+  contents: write
+
+jobs:
+  dependency-submission:
+    name: Dependency Submission
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup Java
+        uses: actions/setup-java@v4.2.1
+        with:
+          java-version: 22
+          distribution: oracle
+
+      - name: Submit Gradle dependencies
+        uses: gradle/actions/dependency-submission@v3.2.0
