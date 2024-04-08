@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "de.jessestricker"
-version = "0.1.0-pre-0"
+version = "0.1.0"
 
 repositories {
     mavenCentral()
