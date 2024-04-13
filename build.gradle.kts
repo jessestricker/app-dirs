@@ -15,9 +15,8 @@ repositories {
 }
 
 dependencies {
-    testImplementation(libs.junit.jupiter)
+    testImplementation(libs.kotest.runner.junit5)
     testImplementation(libs.kotest.assertions.core)
-    testRuntimeOnly(libs.junit.platform.launcher)
 }
 
 tasks.test {

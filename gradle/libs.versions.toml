@@ -1,6 +1,5 @@
 [versions]
 detekt = "1.23.6"
-junit = "5.10.2"
 kotest = "5.8.1"
 kotlin = "1.9.23"
 kover = "0.7.6"
@@ -11,6 +10,5 @@ kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 
 [libraries]
-junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
-junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }

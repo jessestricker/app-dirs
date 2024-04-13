@@ -1,13 +1,12 @@
 package de.jessetricker.appdirs
 
 import de.jessetricker.appdirs.util.withFakeSystem
+import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.equals.shouldBeEqual
-import org.junit.jupiter.api.Test
 import kotlin.io.path.Path
 
-class IntegrationTest {
-    @Test
-    fun `Linux uses XDG environment variables`() {
+class IntegrationTest : FunSpec({
+    test("Linux uses XDG environment variables") {
         withFakeSystem(
             properties = mapOf("os.name" to "Linux"),
             environmentVariables = mapOf(
@@ -22,8 +21,7 @@ class IntegrationTest {
         }
     }
 
-    @Test
-    fun `Linux falls back to HOME environment variable`() {
+    test("Linux falls back to HOME environment variable") {
         withFakeSystem(
             properties = mapOf("os.name" to "Linux"),
             environmentVariables = mapOf("HOME" to "/home/user")
@@ -35,8 +33,7 @@ class IntegrationTest {
         }
     }
 
-    @Test
-    fun `macOS uses HOME environment variables`() {
+    test("macOS uses HOME environment variables") {
         withFakeSystem(
             properties = mapOf("os.name" to "Mac OS X"),
             environmentVariables = mapOf("HOME" to "/Users/user")
@@ -48,8 +45,7 @@ class IntegrationTest {
         }
     }
 
-    @Test
-    fun `Windows uses APPDATA environment variables`() {
+    test("Windows uses APPDATA environment variables") {
         withFakeSystem(
             properties = mapOf("os.name" to "Windows 11"),
             environmentVariables = mapOf(
@@ -63,4 +59,4 @@ class IntegrationTest {
             actualAppDirs.userCacheDir shouldBeEqual Path("C:/Users/User/AppData/Local/appName")
         }
     }
-}
+})
