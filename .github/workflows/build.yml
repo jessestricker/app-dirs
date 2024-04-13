@@ -86,6 +86,7 @@ jobs:
         if: ${{ ! cancelled() }}
         with:
           sarif_file: ./build/reports/detekt/main.sarif
+          category: main
 
       - name: Run detekt analysis on test sources
         run: ./gradlew detektTest
@@ -96,3 +97,4 @@ jobs:
         if: ${{ ! cancelled() }}
         with:
           sarif_file: ./build/reports/detekt/test.sarif
+          category: test
