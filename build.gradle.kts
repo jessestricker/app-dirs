@@ -24,6 +24,7 @@ tasks.test {
 }
 
 kotlin {
+    explicitApi()
     compilerOptions {
         freeCompilerArgs.add("-Xjdk-release=21")
     }
