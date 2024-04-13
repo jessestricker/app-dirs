@@ -23,6 +23,12 @@ tasks.test {
     useJUnitPlatform()
 }
 
+kotlin {
+    compilerOptions {
+        freeCompilerArgs.add("-Xjdk-release=21")
+    }
+}
+
 java {
     withSourcesJar()
 }
