@@ -79,7 +79,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v3.2.0
 
       - name: Run detekt analysis
-        run: ./gradlew detekt
+        run: ./gradlew detektMain detektTest
 
       - name: Upload detekt report for CodeQL
         uses: github/codeql-action/upload-sarif@v3.24.10
