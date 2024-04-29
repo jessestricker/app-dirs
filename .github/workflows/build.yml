@@ -45,7 +45,7 @@ jobs:
         run: ./gradlew test
 
       - name: Upload test report
-        uses: actions/upload-artifact@v4.3.1
+        uses: actions/upload-artifact@v4.3.3
         if: ${{ failure() && steps.test.outcome == 'failure' }}
         with:
           name: test-report-${{ matrix.runner }}
@@ -55,7 +55,7 @@ jobs:
         run: ./gradlew koverHtmlReport --exclude-task=test
 
       - name: Upload coverage report
-        uses: actions/upload-artifact@v4.3.1
+        uses: actions/upload-artifact@v4.3.3
         with:
           name: coverage-report-${{ matrix.runner }}
           path: ./build/reports/kover/html/
