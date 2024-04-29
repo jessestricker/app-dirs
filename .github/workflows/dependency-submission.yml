@@ -22,4 +22,4 @@ jobs:
           distribution: temurin
 
       - name: Submit Gradle dependencies
-        uses: gradle/actions/dependency-submission@v3.3.0
+        uses: gradle/actions/dependency-submission@v3.3.2
