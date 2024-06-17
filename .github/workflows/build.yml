@@ -82,7 +82,7 @@ jobs:
         run: ./gradlew detektMain
 
       - name: Upload main detekt report for CodeQL
-        uses: github/codeql-action/upload-sarif@v3.24.10
+        uses: github/codeql-action/upload-sarif@v3.25.10
         if: ${{ ! cancelled() }}
         with:
           sarif_file: ./build/reports/detekt/main.sarif
@@ -93,7 +93,7 @@ jobs:
         if: ${{ ! cancelled() }}
 
       - name: Upload test detekt report for CodeQL
-        uses: github/codeql-action/upload-sarif@v3.24.10
+        uses: github/codeql-action/upload-sarif@v3.25.10
         if: ${{ ! cancelled() }}
         with:
           sarif_file: ./build/reports/detekt/test.sarif
