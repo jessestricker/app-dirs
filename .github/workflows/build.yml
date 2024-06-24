@@ -18,7 +18,7 @@ jobs:
           distribution: temurin
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3.3.0
+        uses: gradle/actions/setup-gradle@v3.4.2
 
       - name: Build
         run: ./gradlew assemble
@@ -38,7 +38,7 @@ jobs:
           distribution: temurin
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3.3.0
+        uses: gradle/actions/setup-gradle@v3.4.2
 
       - name: Test
         id: test
@@ -76,7 +76,7 @@ jobs:
           distribution: temurin
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3.3.0
+        uses: gradle/actions/setup-gradle@v3.4.2
 
       - name: Run detekt analysis on main sources
         run: ./gradlew detektMain
