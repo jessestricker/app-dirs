@@ -2,7 +2,7 @@
 detekt = "1.23.6"
 kotest = "5.8.1"
 kotlin = "1.9.23"
-kover = "0.7.6"
+kover = "0.8.2"
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
